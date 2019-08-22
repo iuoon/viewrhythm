@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Collapse>
+    <Head></Head>
+    <Collapse simple class="collapse_c_1">
       <Panel name="1">
         史蒂夫·乔布斯
         <p slot="content">史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。</p>
@@ -18,11 +19,19 @@
 </template>
 
 <script>
+import Head from '../components/Head'
 export default {
-  name: 'Index'
+  name: 'Index',
+  components: {
+    Head: Head
+  }
 }
 </script>
 
 <style scoped>
-
+.collapse_c_1{
+  margin-right: 90%;
+  text-align: left;
+  box-shadow: 0px 0px 11px 0px #b6b9ff;
+}
 </style>
