@@ -30,8 +30,10 @@ export default {
 
 <style scoped>
 .collapse_c_1{
-  margin-right: 90%;
+  float: left;
+  width: 15%;
   text-align: left;
   box-shadow: 0px 0px 11px 0px #b6b9ff;
+  margin-top: 20px;
 }
 </style>
