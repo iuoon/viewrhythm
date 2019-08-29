@@ -29,16 +29,6 @@ export default {
     border-right: 1px solid #57a3f3d9;
     height: 100%;
   }
-  .ivu-collapse-header{
-    height: 38px;
-    line-height: 38px;
-    padding-left: 16px;
-    color: #2d8cf0 !important;
-    cursor: pointer;
-    position: relative;
-    border-bottom: 1px solid transparent;
-    transition: all .2s ease-in-out;
-  }
   .collapse_c_1{
     float: left;
     width: 90%;
