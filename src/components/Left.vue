@@ -25,6 +25,7 @@ export default {
 
 <style scoped>
   .left_1{
+    float: left;
     width: 18%;
     border-right: 1px solid #57a3f3d9;
     height: 100%;
