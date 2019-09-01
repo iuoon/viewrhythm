@@ -1,23 +1,29 @@
 <template>
-  <draggable>
-    <transition-group>
-      <div :key="1">
-        <span>1111</span>
-      </div>
-      <div :key="2">
-        <span>2222</span>
-      </div>
-    </transition-group>
-  </draggable>
+  <div>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <img src="../assets/logo.png" draggable="true" ondragstart="drag(event)" id="drag1" />
+    </div>
+    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+  </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable'
 
 export default {
   name: 'Main',
-  components: {
-    draggable
+  methods: {
+    allowDrop (ev) {
+      ev.preventDefault()
+    },
+    drag (ev) {
+      ev.dataTransfer.setData('Text', ev.target.id)
+    },
+
+    drop (ev) {
+      ev.preventDefault()
+      var data = ev.dataTransfer.getData('Text')
+      ev.target.appendChild(document.getElementById(data))
+    }
   }
 }
 </script>
