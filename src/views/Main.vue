@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <div id="div1" @ondrop="drop(event)" @ondragover="allowDrop(event)" style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}">
-      <img src="../assets/logo.png" draggable="true" @ondragstart="drag(event)" id="drag1" />
+  <div class="main">
+    <div id="div1" @ondrop="drop(e)" @ondragover="allowDrop(e)" style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}">
+      <img src="../assets/logo.png" draggable="true" @ondragstart="drag(e)" id="drag1" />
     </div>
-    <div id="div2" @ondrop="drop(event)" @ondragover="allowDrop(event)"  style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}"></div>
+    <div id="div2" @ondrop="drop(e)" @ondragover="allowDrop(e)"  style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}"></div>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     drop (ev) {
       console.log(ev)
       ev.preventDefault()
-      var data = ev.dataTransfer.getData('Text')
+      const data = ev.dataTransfer.getData('Text')
       ev.target.appendChild(document.getElementById(data))
     }
   }
@@ -31,5 +31,8 @@ export default {
 </script>
 
 <style scoped>
-
+.main{
+  float: left;
+  width: 82%;
+}
 </style>
