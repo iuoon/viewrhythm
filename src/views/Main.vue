@@ -1,9 +1,9 @@
 <template>
   <div class="main">
-    <div id="div1" @ondrop="drop(e)" @ondragover="allowDrop(e)" style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}">
-      <img src="../assets/logo.png" draggable="true" @ondragstart="drag(e)" id="drag1" />
+    <div id="div1" @drop="drop" @dragover="allowDrop" style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}">
+      <img src="../assets/logo.png" draggable="true" @dragstart="drag" id="drag1" />
     </div>
-    <div id="div2" @ondrop="drop(e)" @ondragover="allowDrop(e)"  style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}"></div>
+    <div id="div2" @drop="drop" @dragover="allowDrop"  style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}"></div>
   </div>
 </template>
 
