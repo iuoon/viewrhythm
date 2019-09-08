@@ -14,6 +14,14 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <script>
+    document.ondragover = function(e){
+      e.preventDefault(); //使得ondrop可能触发
+    }
+    document.ondrop = function(e){
+      e.preventDefault();//阻止浏览器在新窗口中打开本地图片
+    }
+  </script>
 <style>
   html, body {
     height: 100%;
