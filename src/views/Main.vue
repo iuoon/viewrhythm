@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <div id="div1" @drop="drop" @dragover="allowDrop" style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}">
-      <img src="../assets/logo.png" draggable="true" @dragstart="dragstart" id="drag1" :style="elc" />
+    <div id="div1" @drop="drop" @dragover="allowDrop" style="{position:relative; width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}">
+      <img src="../assets/logo.png" draggable="true" @dragstart="dragstart" @drag="drag" id="drag1" :style="elc" />
     </div>
     <div id="div2" @drop="drop" @dragover="allowDrop"  style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}"></div>
   </div>
@@ -27,22 +27,18 @@ export default {
   methods: {
     allowDrop (e) {
       e.preventDefault()
-      this.elp.x = e.pageX
-      this.elp.y = e.pageY
-      if (this.elp.x === 0 && this.elp.y === 0) {
-        return false
-      }
-      this.elp.x -= this.elp.offsetX
-      this.elp.y -= this.elp.offsetY
-      console.log(this.elp.x, this.elp.y)
     },
     dragstart (e) {
       console.log('00', e)
       e.dataTransfer.setData('Text', e.target.id)
-      this.elp.offsetX = e.offsetX
-      this.elp.offsetY = e.offsetY
+      const p = document.getElementById(e.target.id)
+      console.log(p.offsetTop, p.offsetLeft)
     },
-
+    drag (e) {
+      console.log('33', e)
+      const p = document.getElementById(e.target.id)
+      console.log(p.offsetTop, p.offsetLeft)
+    },
     drop (e) {
       console.log('22', e)
       e.preventDefault()
