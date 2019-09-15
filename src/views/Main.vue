@@ -1,9 +1,9 @@
 <template>
-  <div class="main">
-    <div id="div1" @drop="drop" @dragover="allowDrop" style="{position:relative; width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}">
+  <div class="main" style="position: relative;">
+    <div id="div1" @drop="drop" @dragover="allowDrop" style="position: relative; width:98%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;">
       <img src="../assets/logo.png" draggable="true" @dragstart="dragstart" @drag="drag" id="drag1" :style="elc" />
     </div>
-    <div id="div2" @drop="drop" @dragover="allowDrop"  style="{width:90%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;}"></div>
+    <div id="div2" @drop="drop" @dragover="allowDrop"  style="position: relative; width:98%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;"></div>
   </div>
 </template>
 
@@ -32,16 +32,21 @@ export default {
       console.log('00', e)
       e.dataTransfer.setData('Text', e.target.id)
       const p = document.getElementById(e.target.id)
-      console.log(p.offsetTop, p.offsetLeft)
+      this.elp.offsetX = e.offsetX
+      this.elp.offsetY = e.offsetY
+      console.log(p.offsetLeft, p.offsetTop)
     },
     drag (e) {
-      console.log('33', e)
+      console.log('33')
+      const d1 = document.getElementById('div1')
       const p = document.getElementById(e.target.id)
-      console.log(p.offsetTop, p.offsetLeft)
+      d1.style.position = 'relative'
+      p.style.position = 'relative'
+      console.log(p.offsetLeft, p.offsetTop)
+      console.log((e.offsetX - this.elp.offsetX), (e.offsetY - this.elp.offsetY)) //  计算偏移的像素
     },
     drop (e) {
       console.log('22', e)
-      e.preventDefault()
       const data = e.dataTransfer.getData('Text')
       e.target.appendChild(document.getElementById(data))
     }
