@@ -1,13 +1,13 @@
 <template>
-    <div class="left_1">
+    <div class="left_1" style="position: relative;">
       <Collapse class="collapse_c_1" simple >
         <Panel name="1" class="panel_c_1">
           史蒂夫·乔布斯
-          <p slot="content" >史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。</p>
+          <p slot="content" ><span draggable="true" @dragstart="dragstart" @drag="drag" id="drag11" :style="elc"><Button>Default1</Button></span> </p>
         </Panel>
         <Panel name="2">
           斯蒂夫·盖瑞·沃兹尼亚克
-          <p slot="content">斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。</p>
+          <p slot="content"><Button draggable="true" @dragstart="dragstart" @drag="drag" id="drag21" :style="elc" >Default2</Button></p>
         </Panel>
         <Panel name="3">
           乔纳森·伊夫
@@ -19,7 +19,38 @@
 
 <script>
 export default {
-  name: 'Left'
+  name: 'Left',
+  data () {
+    return {
+      elc: {
+        float: 'left', left: '20px', top: '10px'
+      },
+      elp: {
+        offsetX: 0,
+        offsetY: 0,
+        x: 0,
+        y: 0
+      }
+    }
+  },
+  methods: {
+    allowDrop (e) {
+      e.preventDefault()
+    },
+    dragstart (e) {
+      console.log('00', e)
+      e.dataTransfer.setData('Text', e.target.id)
+    },
+    drag (e) {
+      console.log('33')
+    },
+    drop (e) {
+      console.log('22', e)
+      const data = e.dataTransfer.getData('Text')
+      console.log(data)
+      e.target.appendChild(document.getElementById(data))
+    }
+  }
 }
 </script>
 
