@@ -49,7 +49,7 @@ export default {
       console.log('22', e)
       const data = e.dataTransfer.getData('Text')
       console.log(data)
-      e.target.appendChild(document.getElementById(data))
+      e.target.appendChild(document.getElementById(data).cloneNode(true))
     }
   }
 }
