@@ -2,15 +2,15 @@
     <div class="left_1" style="position: relative;">
       <Collapse class="collapse_c_1" simple >
         <Panel name="1" class="panel_c_1">
-          史蒂夫·乔布斯
+          基础组件
           <p slot="content" ><span draggable="true" @dragstart="dragstart" @drag="drag" id="drag11" :style="elc"><Button>Default1</Button></span> </p>
         </Panel>
         <Panel name="2">
-          斯蒂夫·盖瑞·沃兹尼亚克
+          推荐组件
           <p slot="content"><Button draggable="true" @dragstart="dragstart" @drag="drag" id="drag21" :style="elc" >Default2</Button></p>
         </Panel>
         <Panel name="3">
-          乔纳森·伊夫
+          我的组件
           <p slot="content">乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
         </Panel>
       </Collapse>
