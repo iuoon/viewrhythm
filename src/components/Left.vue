@@ -38,7 +38,7 @@ export default {
       e.preventDefault()
     },
     dragstart (e) {
-      console.log('00', e)
+      console.log('11', e)
       e.dataTransfer.setData('Text', e.target.id)
     },
     drag (e) {

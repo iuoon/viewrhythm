@@ -49,7 +49,12 @@ export default {
       console.log('22', e)
       const data = e.dataTransfer.getData('Text')
       console.log(data)
-      e.target.appendChild(document.getElementById(data).cloneNode(true))
+      const el = document.getElementById(data).cloneNode(true) // cloneNode(true)子元素及属性一起拷贝，false不拷贝子元素
+      el.addEventListener('dragstart', function (ev) {
+        console.log('110', ev)
+        ev.dataTransfer.setData('Text', ev.target.id)
+      }, false)
+      e.target.appendChild(el)
     }
   }
 }
