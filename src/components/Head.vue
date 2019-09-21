@@ -1,7 +1,10 @@
 <template>
     <div>
       <Menu mode="horizontal" theme="light" active-name="1">
-        <MenuItem name="1">
+        <a style="height: 50px;float: left;width: 10%; margin-top: 8px;">
+          <img src="https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png" style="width: 70%;">
+        </a>
+        <MenuItem name="1" style="margin-left: 10%;">
           设  计
         </MenuItem>
         <MenuItem name="2">
@@ -45,5 +48,8 @@ export default {
   width:fit-content;
   width:-moz-fit-content;
   font-size: 16px;
+}
+.logo{
+
 }
 </style>

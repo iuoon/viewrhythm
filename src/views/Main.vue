@@ -1,9 +1,12 @@
 <template>
-  <div class="main" style="position: relative;">
-    <div id="div1" @drop="drop" @dragover="allowDrop" style="position: relative; width:98%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;">
-      <img src="../assets/logo.png" draggable="true" @dragstart="dragstart" @drag="drag" id="drag1" :style="elc" />
+  <div class="main" style="position: relative;height: 100%">
+    <!--<div id="div1" @drop="drop" @dragover="allowDrop" style="position: relative; width:98%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;">-->
+      <!--<img src="../assets/logo.png" draggable="true" @dragstart="dragstart" @drag="drag" id="drag1" :style="elc" />-->
+    <!--</div>-->
+    <!--<div id="div2" @drop="drop" @dragover="allowDrop"  style="position: relative; width:98%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;"></div>-->
+    <div id="editor" class="editor" @drop="drop" @dragover="allowDrop">
+
     </div>
-    <div id="div2" @drop="drop" @dragover="allowDrop"  style="position: relative; width:98%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;"></div>
   </div>
 </template>
 
@@ -38,23 +41,32 @@ export default {
     },
     drag (e) {
       console.log('33')
-      const d1 = document.getElementById('div1')
+      const editor = document.getElementById('editor')
       const p = document.getElementById(e.target.id)
-      d1.style.position = 'relative'
+      editor.style.position = 'relative'
       p.style.position = 'relative'
-      console.log(p.offsetLeft, p.offsetTop)
       console.log((e.offsetX - this.elp.offsetX), (e.offsetY - this.elp.offsetY)) //  计算偏移的像素
     },
     drop (e) {
+      const that = this
       console.log('22', e)
       const data = e.dataTransfer.getData('Text')
       console.log(data)
       const el = document.getElementById(data).cloneNode(true) // cloneNode(true)子元素及属性一起拷贝，false不拷贝子元素
+      el.id = that.randNum()
       el.addEventListener('dragstart', function (ev) {
         console.log('110', ev)
         ev.dataTransfer.setData('Text', ev.target.id)
       }, false)
+      el.addEventListener('drag', that.drag, true)
       e.target.appendChild(el)
+    },
+    randNum () {
+      var num = ''
+      for (var i = 0; i < 6; i++) {
+        num += Math.floor(Math.random() * 10)
+      }
+      return num
     }
   }
 }
@@ -64,5 +76,10 @@ export default {
 .main{
   float: left;
   width: 82%;
+}
+.editor{
+  height: 100%;
+  margin: 3%;
+  background-color: #f3f3f3;
 }
 </style>
