@@ -3,11 +3,11 @@
       <Collapse class="collapse_c_1" simple value="1">
         <Panel name="1" class="panel_c_1">
           基础组件
-          <div slot="content" ><span draggable="true" @dragstart="dragstart" @drag="drag" id="bt_1" ><Button>Default1</Button></span> </div>
+          <div slot="content" ><div draggable="true" @dragstart="dragstart" @drag="drag" id="bt_1" style="width: fit-content;width: -moz-fit-content" ><Button>Default1</Button></div> </div>
         </Panel>
         <Panel name="2">
           更多组件
-          <div slot="content"><span draggable="true" @dragstart="dragstart" @drag="drag" id="bt_2" ><Button>Default2</Button></span> </div>
+          <div slot="content"><div draggable="true" @dragstart="dragstart" @drag="drag" id="bt_2" style="width: fit-content;width: -moz-fit-content"><Button>Default2</Button></div> </div>
         </Panel>
         <Panel name="3">
           我的组件
@@ -54,8 +54,8 @@ export default {
       // p.style.position = 'relative'
       const p1 = this.getLeftTop(p)
       const editor1 = this.getLeftTop(editor)
-      this.elp.offsetX = editor1.left - p1.left
-      this.elp.offsetY = editor1.top - p1.top
+      this.elp.offsetX = editor1.left
+      this.elp.offsetY = editor1.top
       console.log(this.elp.offsetX, this.elp.offsetY)
     },
     drag (e) {
@@ -64,6 +64,7 @@ export default {
       const p = document.getElementById(e.target.id)
       editor.style.position = 'relative'
       p.style.position = 'relative'
+      p.style.width = 'fit-content'
       var offset = { left: (e.offsetX - this.elp.offsetX), top: (e.offsetY - this.elp.offsetY) }
       console.log(offset) //  计算偏移的像素
       localStorage.setItem(e.target.id, JSON.stringify(offset))
