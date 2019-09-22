@@ -3,11 +3,11 @@
       <Collapse class="collapse_c_1" simple value="1">
         <Panel name="1" class="panel_c_1">
           基础组件
-          <div slot="content" ><span draggable="true" @dragstart="dragstart" @drag="drag" id="drag11" ><Button>Default1</Button></span> </div>
+          <div slot="content" ><span draggable="true" @dragstart="dragstart" @drag="drag" id="bt_1" ><Button>Default1</Button></span> </div>
         </Panel>
         <Panel name="2">
           更多组件
-          <div slot="content"><span draggable="true" @dragstart="dragstart" @drag="drag" id="drag21" ><Button>Default2</Button></span> </div>
+          <div slot="content"><span draggable="true" @dragstart="dragstart" @drag="drag" id="bt_2" ><Button>Default2</Button></span> </div>
         </Panel>
         <Panel name="3">
           我的组件
@@ -45,21 +45,39 @@ export default {
     }
   },
   methods: {
-    allowDrop (e) {
-      e.preventDefault()
-    },
     dragstart (e) {
-      console.log('11', e)
+      console.log('11')
       e.dataTransfer.setData('Text', e.target.id)
+      const p = document.getElementById(e.target.id)
+      const editor = document.getElementById('editor')
+      // editor.style.position = 'relative'
+      // p.style.position = 'relative'
+      const p1 = this.getLeftTop(p)
+      const editor1 = this.getLeftTop(editor)
+      this.elp.offsetX = editor1.left - p1.left
+      this.elp.offsetY = editor1.top - p1.top
+      console.log(this.elp.offsetX, this.elp.offsetY)
     },
     drag (e) {
-      console.log('33')
+      console.log('33-0')
+      const editor = document.getElementById('editor')
+      const p = document.getElementById(e.target.id)
+      editor.style.position = 'relative'
+      p.style.position = 'relative'
+      var offset = { left: (e.offsetX - this.elp.offsetX), top: (e.offsetY - this.elp.offsetY) }
+      console.log(offset) //  计算偏移的像素
+      localStorage.setItem(e.target.id, JSON.stringify(offset))
     },
-    drop (e) {
-      console.log('22', e)
-      const data = e.dataTransfer.getData('Text')
-      console.log(data)
-      e.target.appendChild(document.getElementById(data))
+    getLeftTop (obj) {
+      var left = obj.offsetLeft
+      var top = obj.offsetTop
+      var node = obj.offsetParent
+      while (node != null) {
+        left += node.offsetLeft
+        top += node.offsetTop
+        node = node.offsetParent
+      }
+      return { left: left, top: top }
     }
   }
 }

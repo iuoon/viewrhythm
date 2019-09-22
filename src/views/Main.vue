@@ -51,8 +51,10 @@ export default {
       const that = this
       console.log('22', e)
       const data = e.dataTransfer.getData('Text')
-      console.log(data)
       const el = document.getElementById(data).cloneNode(true) // cloneNode(true)子元素及属性一起拷贝，false不拷贝子元素
+      var offset = JSON.parse(localStorage.getItem(el.id))
+      el.offsetLeft = offset.left
+      el.offsetTop = offset.top
       el.id = that.randNum()
       el.addEventListener('dragstart', function (ev) {
         console.log('110', ev)
