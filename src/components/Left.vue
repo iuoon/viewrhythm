@@ -1,7 +1,7 @@
 <template>
-    <div class="left_1" style="position: relative;">
-      <Collapse class="collapse_c_1" simple value="1">
-        <Panel name="1" class="panel_c_1">
+    <div id="left" class="left" style="position: relative;">
+      <Collapse class="collapse" simple value="1">
+        <Panel name="1">
           基础组件
           <div slot="content" ><div draggable="true" @dragstart="dragstart" @drag="drag" id="bt_1" style="width: fit-content;width: -moz-fit-content" ><Button>Default1</Button></div> </div>
         </Panel>
@@ -52,10 +52,8 @@ export default {
       const editor = document.getElementById('editor')
       // editor.style.position = 'relative'
       // p.style.position = 'relative'
-      const p1 = this.getLeftTop(p)
-      const editor1 = this.getLeftTop(editor)
-      this.elp.offsetX = editor1.left
-      this.elp.offsetY = editor1.top
+      this.elp.offsetX = e.offsetX
+      this.elp.offsetY = e.offsetY
       console.log(this.elp.offsetX, this.elp.offsetY)
     },
     drag (e) {
@@ -65,8 +63,8 @@ export default {
       editor.style.position = 'relative'
       p.style.position = 'relative'
       p.style.width = 'fit-content'
-      var offset = { left: (e.offsetX - this.elp.offsetX), top: (e.offsetY - this.elp.offsetY) }
-      console.log(offset) //  计算偏移的像素
+      var offset = { left: e.offsetX, top: e.offsetY }
+      // console.log(offset) //  计算偏移的像素
       localStorage.setItem(e.target.id, JSON.stringify(offset))
     },
     getLeftTop (obj) {
@@ -85,13 +83,13 @@ export default {
 </script>
 
 <style scoped>
-  .left_1{
+  .left{
     float: left;
     width: 18%;
     border-right: 1px solid #57a3f3d9;
     height: 100%;
   }
-  .collapse_c_1{
+  .collapse{
     float: left;
     width: 90%;
     text-align: left;
