@@ -4,7 +4,7 @@
       <!--<img src="../assets/logo.png" draggable="true" @dragstart="dragstart" @drag="drag" id="drag1" :style="elc" />-->
     <!--</div>-->
     <!--<div id="div2" @drop="drop" @dragover="allowDrop"  style="position: relative; width:98%; height:200px; margin:10px;padding:10px;border:1px solid #aaaaaa;"></div>-->
-    <div id="editor" class="editor" @drop="drop" @dragover="allowDrop">
+    <div id="editor" class="editor" @drop="drop" @dragover="allowDrop" @dragenter="dragenter">
 
     </div>
   </div>
@@ -47,14 +47,19 @@ export default {
       p.style.position = 'relative'
       console.log((e.offsetX - this.elp.offsetX), (e.offsetY - this.elp.offsetY)) //  计算偏移的像素
     },
+    dragenter (e) {
+      console.log('44', e)
+      this.elp.offsetX = e.offsetLeft
+      this.elp.offsetY = e.offsetTop
+    },
     drop (e) {
       const that = this
       console.log('22', e)
       const data = e.dataTransfer.getData('Text')
       const el = document.getElementById(data).cloneNode(true) // cloneNode(true)子元素及属性一起拷贝，false不拷贝子元素
-      var offset = JSON.parse(localStorage.getItem(el.id))
-      el.style.left = (e.offsetX - offset.left) + 'px'
-      el.style.top = (e.offsetY - offset.top) + 'px'
+
+      el.style.left = (e.offsetLeft - this.elp.offsetX) + 'px'
+      el.style.top = (e.offsetTop - this.elp.offsetY) + 'px'
       console.log(el.style)
       el.id = that.randNum()
       el.addEventListener('dragstart', function (ev) {

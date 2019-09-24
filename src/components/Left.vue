@@ -48,24 +48,24 @@ export default {
     dragstart (e) {
       console.log('11')
       e.dataTransfer.setData('Text', e.target.id)
-      const p = document.getElementById(e.target.id)
-      const editor = document.getElementById('editor')
+      // const p = document.getElementById(e.target.id)
+      // const editor = document.getElementById('editor')
       // editor.style.position = 'relative'
       // p.style.position = 'relative'
-      this.elp.offsetX = e.offsetX
-      this.elp.offsetY = e.offsetY
-      console.log(this.elp.offsetX, this.elp.offsetY)
+      // this.elp.offsetX = e.offsetX
+      // this.elp.offsetY = e.offsetY
+      // console.log(this.elp.offsetX, this.elp.offsetY)
     },
     drag (e) {
       console.log('33-0')
-      const editor = document.getElementById('editor')
-      const p = document.getElementById(e.target.id)
-      editor.style.position = 'relative'
-      p.style.position = 'relative'
-      p.style.width = 'fit-content'
-      var offset = { left: e.offsetX, top: e.offsetY }
+      // const editor = document.getElementById('editor')
+      // const p = document.getElementById(e.target.id)
+      // editor.style.position = 'relative'
+      // p.style.position = 'relative'
+      // p.style.width = 'fit-content'
+      // var offset = { left: e.offsetX, top: e.offsetY }
       // console.log(offset) //  计算偏移的像素
-      localStorage.setItem(e.target.id, JSON.stringify(offset))
+      // localStorage.setItem(e.target.id, JSON.stringify(offset))
     },
     getLeftTop (obj) {
       var left = obj.offsetLeft
