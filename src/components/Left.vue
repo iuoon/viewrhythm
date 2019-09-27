@@ -48,24 +48,29 @@ export default {
     dragstart (e) {
       console.log('11')
       e.dataTransfer.setData('Text', e.target.id)
-      // const p = document.getElementById(e.target.id)
-      // const editor = document.getElementById('editor')
-      // editor.style.position = 'relative'
-      // p.style.position = 'relative'
-      // this.elp.offsetX = e.offsetX
-      // this.elp.offsetY = e.offsetY
-      // console.log(this.elp.offsetX, this.elp.offsetY)
+      const p = document.getElementById(e.target.id)
+      const editor = document.getElementById('editor')
+      editor.style.position = 'relative'
+      p.style.position = 'absolute'
+      var offset = this.getLeftTop(p)
+      this.elp.offsetX = offset.left
+      this.elp.offsetY = offset.top
+      console.log(this.elp.offsetX, this.elp.offsetY)
     },
     drag (e) {
-      console.log('33-0')
-      // const editor = document.getElementById('editor')
-      // const p = document.getElementById(e.target.id)
-      // editor.style.position = 'relative'
-      // p.style.position = 'relative'
-      // p.style.width = 'fit-content'
-      // var offset = { left: e.offsetX, top: e.offsetY }
-      // console.log(offset) //  计算偏移的像素
-      // localStorage.setItem(e.target.id, JSON.stringify(offset))
+      console.log('33-0', e)
+      const editor = document.getElementById('editor')
+      const p = document.getElementById(e.target.id)
+      editor.style.position = 'relative'
+      p.style.position = 'absolute'
+      p.style.width = 'fit-content'
+      //  var offset1 = this.getLeftTop(p)
+      // var offset2 = this.getLeftTop(editor)
+      var offset = {}
+      offset.left = e.pageX
+      offset.top = e.pageY
+      console.log(offset) //  计算偏移的像素
+      localStorage.setItem(e.target.id, JSON.stringify(offset))
     },
     getLeftTop (obj) {
       var left = obj.offsetLeft

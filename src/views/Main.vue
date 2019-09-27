@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     allowDrop (e) {
+      console.log('www', e)
       e.preventDefault()
     },
     dragstart (e) {
@@ -49,18 +50,22 @@ export default {
     },
     dragenter (e) {
       console.log('44', e)
-      this.elp.offsetX = e.offsetLeft
-      this.elp.offsetY = e.offsetTop
+      this.elp.offsetX = e.pageX
+      this.elp.offsetY = e.pageY
+      console.log(e.offsetX, e.offsetY)
     },
     drop (e) {
       const that = this
       console.log('22', e)
       const data = e.dataTransfer.getData('Text')
       const el = document.getElementById(data).cloneNode(true) // cloneNode(true)子元素及属性一起拷贝，false不拷贝子元素
-
-      el.style.left = (e.offsetLeft - this.elp.offsetX) + 'px'
-      el.style.top = (e.offsetTop - this.elp.offsetY) + 'px'
-      console.log(el.style)
+      var offset = JSON.parse(localStorage.getItem(el.id))
+      const editor = document.getElementById('editor')
+      var offset1 = this.getLeftTop(editor)
+      console.log(offset1.left, offset1.top, editor.offsetLeft, editor.offsetTop)
+      el.style.left = (e.pageX - this.elp.offsetX) + 'px'
+      el.style.top = (e.pageY - this.elp.offsetY) + 'px'
+      console.log(el.style.left, el.style.top)
       el.id = that.randNum()
       el.addEventListener('dragstart', function (ev) {
         console.log('110', ev)
@@ -75,6 +80,17 @@ export default {
         num += Math.floor(Math.random() * 10)
       }
       return num
+    },
+    getLeftTop (obj) {
+      var left = obj.offsetLeft
+      var top = obj.offsetTop
+      var node = obj.offsetParent
+      while (node != null) {
+        left += node.offsetLeft
+        top += node.offsetTop
+        node = node.offsetParent
+      }
+      return { left: left, top: top }
     }
   }
 }
