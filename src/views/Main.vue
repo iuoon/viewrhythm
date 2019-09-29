@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     allowDrop (e) {
-      console.log('www', e)
       e.preventDefault()
     },
     dragstart (e) {
@@ -60,11 +59,13 @@ export default {
       const data = e.dataTransfer.getData('Text')
       const el = document.getElementById(data)
       const nel = el.cloneNode(true) // cloneNode(true)子元素及属性一起拷贝，false不拷贝子元素
+      nel.style.position = 'absolute'
+      nel.style.width = 'fit-content'
       const editor = document.getElementById('editor')
       var offset1 = this.getLeftTop(editor)
       console.log(offset1.left, offset1.top, editor.offsetLeft, editor.offsetTop)
-      var left = (e.pageX - offset1.left - Math.round(el.offsetWidth / 2))
-      var top = (e.pageY - offset1.top - Math.round(el.offsetHeight / 2))
+      var left = (e.pageX - offset1.left - (nel.offsetWidth))
+      var top = (e.pageY - offset1.top - (nel.offsetHeight))
       if (left < 0) {
         left = 0
       }

@@ -51,7 +51,8 @@ export default {
       const p = document.getElementById(e.target.id)
       const editor = document.getElementById('editor')
       editor.style.position = 'relative'
-      p.style.position = 'absolute'
+      // p.style.position = 'absolute'
+      p.style.width = 'fit-content'
       var offset = this.getLeftTop(p)
       this.elp.offsetX = offset.left
       this.elp.offsetY = offset.top
@@ -61,16 +62,16 @@ export default {
       console.log('33-0', e)
       const editor = document.getElementById('editor')
       const p = document.getElementById(e.target.id)
-      editor.style.position = 'relative'
-      p.style.position = 'absolute'
       p.style.width = 'fit-content'
+      editor.style.position = 'relative'
+      p.css()
       //  var offset1 = this.getLeftTop(p)
       // var offset2 = this.getLeftTop(editor)
       var offset = {}
       offset.left = e.pageX
       offset.top = e.pageY
       console.log(offset) //  计算偏移的像素
-      localStorage.setItem(e.target.id, JSON.stringify(offset))
+      // localStorage.setItem(e.target.id, JSON.stringify(offset))
     },
     getLeftTop (obj) {
       var left = obj.offsetLeft
