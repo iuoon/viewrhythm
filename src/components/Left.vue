@@ -3,7 +3,7 @@
       <Collapse class="collapse" simple value="1">
         <Panel name="1">
           基础组件
-          <div slot="content" ><div draggable="true" @dragstart="dragstart" @drag="drag" id="bt_1" style="width: fit-content;width: -moz-fit-content" ><Button>Default1</Button></div> </div>
+          <div slot="content" ><div draggable="true" @dragstart="dragstart" @drag="drag" id="bt_1" style="width: fit-content;width: -moz-fit-content" ><Button style="width: 80px;height: 36px">Default1</Button></div> </div>
         </Panel>
         <Panel name="2">
           更多组件
@@ -53,24 +53,25 @@ export default {
       editor.style.position = 'relative'
       // p.style.position = 'absolute'
       p.style.width = 'fit-content'
+      // 计算鼠标点和元素position的偏移量
       var offset = this.getLeftTop(p)
-      this.elp.offsetX = offset.left
-      this.elp.offsetY = offset.top
-      console.log(this.elp.offsetX, this.elp.offsetY)
+      offset.left = e.pageX - offset.left
+      offset.top = e.pageY - offset.top
+      console.log(offset.left, offset.top)
+      localStorage.setItem(e.target.id, JSON.stringify(offset))
     },
     drag (e) {
-      console.log('33-0', e)
+      console.log('33-0')
       const editor = document.getElementById('editor')
       const p = document.getElementById(e.target.id)
       p.style.width = 'fit-content'
       editor.style.position = 'relative'
-      p.css()
       //  var offset1 = this.getLeftTop(p)
       // var offset2 = this.getLeftTop(editor)
-      var offset = {}
-      offset.left = e.pageX
-      offset.top = e.pageY
-      console.log(offset) //  计算偏移的像素
+      // var offset = {}
+      // offset.left = e.pageX
+      // offset.top = e.pageY
+      // console.log(offset) //  计算偏移的像素
       // localStorage.setItem(e.target.id, JSON.stringify(offset))
     },
     getLeftTop (obj) {

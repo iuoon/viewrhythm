@@ -57,6 +57,7 @@ export default {
       const that = this
       console.log('22', e)
       const data = e.dataTransfer.getData('Text')
+      var offset = JSON.parse(localStorage.getItem(data))
       const el = document.getElementById(data)
       const nel = el.cloneNode(true) // cloneNode(true)子元素及属性一起拷贝，false不拷贝子元素
       nel.style.position = 'absolute'
@@ -64,8 +65,8 @@ export default {
       const editor = document.getElementById('editor')
       var offset1 = this.getLeftTop(editor)
       console.log(offset1.left, offset1.top, editor.offsetLeft, editor.offsetTop)
-      var left = (e.pageX - offset1.left - (nel.offsetWidth))
-      var top = (e.pageY - offset1.top - (nel.offsetHeight))
+      var left = (e.pageX - offset1.left - (nel.offsetWidth) - offset.left + 4)
+      var top = (e.pageY - offset1.top - (nel.offsetHeight) - offset.top + 1)
       if (left < 0) {
         left = 0
       }
